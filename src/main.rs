@@ -1,9 +1,6 @@
-fn set(varaible: &mut i16, number: i16) {
-  *varaible = number; // 역참조
-}
+use num_bigint::BigInt;
 
 fn main() {
-  let mut variable = 1;
-  set(&mut variable, 2);
-  println!("{}", variable);
+  let v = BigInt::from(1234);
+  println!("{}", v.pow(5678));
 }
