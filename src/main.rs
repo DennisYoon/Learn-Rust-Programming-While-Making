@@ -1,15 +1,29 @@
-fn main() {
-  let enc = encrypt("I LOVE YOU.", 3);
-  let dec = encrypt(&enc, -3);
+fn is_prime(num: usize) -> bool {
+  for i in 2..num {
+    if num % i == 0 {
+      return false;
+    }
+  }
 
-  println!("{} => {}", enc, dec);
+  return true;
 }
 
-fn encrypt(text: &str, shift: i16) -> String {
-  let a = 'A' as i16;
-  let is_az = |c: char| 'A' <= c && c <= 'Z';
-  let conv = |c: i16| (((c - a + shift + 26) % 26 + a) as u8) as char;
-  let enc1 = |c: char| if is_az(c) {conv(c as i16)} else { c };
+fn get_primes(primes: &mut [usize;100]) {
+  let mut i = 2;
+  let mut count = 0;
+  
+  while count < 100 {
+    if is_prime(i) {
+      primes[count] = i;
+      count += 1;
+    }
+    i += 1;
+  }
+}
 
-  return text.chars().map(|c| enc1(c)).collect();
+fn main() {
+  let mut primes = [0; 100];
+  get_primes(&mut primes);
+
+  println!("{:?}", primes);
 }
