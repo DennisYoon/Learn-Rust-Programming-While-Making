@@ -1,29 +1,9 @@
-fn is_prime(num: usize) -> bool {
-  for i in 2..num {
-    if num % i == 0 {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-fn get_primes(primes: &mut [usize;100]) {
-  let mut i = 2;
-  let mut count = 0;
-  
-  while count < 100 {
-    if is_prime(i) {
-      primes[count] = i;
-      count += 1;
-    }
-    i += 1;
-  }
+fn set(varaible: &mut i16, number: i16) {
+  *varaible = number; // 역참조
 }
 
 fn main() {
-  let mut primes = [0; 100];
-  get_primes(&mut primes);
-
-  println!("{:?}", primes);
+  let mut variable = 1;
+  set(&mut variable, 2);
+  println!("{}", variable);
 }
