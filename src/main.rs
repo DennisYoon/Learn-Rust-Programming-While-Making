@@ -1,6 +1,10 @@
-use num_bigint::BigInt;
+use rand::Rng;
 
 fn main() {
-  let v = BigInt::from(1234);
-  println!("{}", v.pow(5678));
+  let mut rng = rand::thread_rng();
+
+  for _ in 0..5 {
+    let dice = rng.gen_range(1..=10);
+    println!("{}", dice);
+  }
 }
