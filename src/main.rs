@@ -1,9 +1,14 @@
 fn main() {
-  for y in 1..=9 {
-    let s = (1..=9)
-      .map(|x| format!("{:3}", x * y))
-      .collect::<Vec<String>>()
-      .join(",");
-    println!("{}", s);
+  let mut a = 1;
+  let mut b = 1;
+
+  println!("{}", a);
+  println!("{}", b);
+
+  for _ in 0..30 {
+    println!("{}", a + b);
+    let temp = a;
+    a = b;
+    b = temp + b;
   }
 }
