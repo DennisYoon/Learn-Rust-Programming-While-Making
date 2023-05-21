@@ -1,32 +1,26 @@
-use std::fs::File;
-use std::io::{BufRead, BufReader};
+use std::fs::{File, self};
+use std::io::{Write, BufWriter};
 
 fn main() {
-  // 사전 파일 path 지정
-  let dic_file = "src/dict.txt";
+  // 출력할 파일이름
+  let out = "src/out.txt";
 
-  // 명령줄 인수 vec에 저장
-  let arg: Vec<String> = std::env::args().collect();
+  // 파일로 저장할 부분 scope 지정
+  {
+    // 파일 생성
+    let fp = File::create(out).unwrap();
+    let mut writer = BufWriter::new(fp);
+    
+    // 문자열 리지털을 byte로 저장
+    let s = String::from("hello");
+    let bytes = s.as_bytes();
 
-  // 인수 1개면 안됨
-  if arg.len() < 2 {
-    println!("인수 왜 한개만 줌??");
-    return;
-  }
+    writer.write(bytes).unwrap();
+    // 파일 저장~
+  } // <- file은 여기서 자동으로 닫힘
 
-  // 인수로 받은 단어
-  let word = &arg[1];
-
-  // 사전 file(dict.txt) 열기
-  let fp = File::open(dic_file).unwrap();
-  // BufReader로 읽어들임
-  let reader = BufReader::new(fp);
-  for line in reader.lines() {
-    let line = line.unwrap();
-    if line.find(word) == None {
-      continue;
-    }
-    println!("{}", line);
-  }
-
+  let s = fs::read_to_string(out).unwrap();
+  println!("{}", s);
+  // 저장된 파일 내용 출력
+  // hello 나올 거임
 }
