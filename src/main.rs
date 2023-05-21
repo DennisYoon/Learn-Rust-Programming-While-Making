@@ -1,21 +1,21 @@
-use std::collections::HashMap;
+use std::fs;
 
 fn main() {
-  let data = "c,c,a,a,a,b,b,b,c,b,c,b,a,c,c,b,c,c,c";
-  
-  let mut map = HashMap::new();
-  map.insert("a", 0);
-  map.insert("b", 0);
-  map.insert("c", 0);
+  // 현재 path는 src가 아님. ../src임
+  let a = "src/a.txt";
+  let b = "src/b.txt";
 
-  for char in data.split(",") {
-    map.insert(char, map[char] + 1);
-  }
+  // file 읽기
+  let file_a = fs::read_to_string(a).unwrap();
+  let file_b = fs::read_to_string(b).unwrap();
 
-  // 결과표시
-  for k in "a,b,c".split(",") {
-    println!("{}: {:>2}", k, map[k]);
-    // map[..]이 없으면 패닉이 일어남. map.get(..)이용하면 해결
-    // map.get()의 return값은 Option타입임
+  // 불필요한 공백 삭제
+  let file_a = file_a.trim();
+  let file_b = file_b.trim();
+
+  if file_a == file_b {
+    println!("Same");
+  } else {
+    println!("Different");
   }
 }
