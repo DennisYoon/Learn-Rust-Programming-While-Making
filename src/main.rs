@@ -1,6 +1,19 @@
+struct Person {
+  name: String,
+  age: u8,
+  height: u8,
+}
+
 fn main() {
-  let s = String::from("RustProgrammingLanguage");
-  println!("{}", &s[0..2]); // 0번째부터 1번째까지의 slice
-  // slice는 기본적으로 참조자이기 때문에 소유권 없음 -> 기존 변수 계속 사용가능
-  // s[..]은 전체 슬라이스 값임
+  let me = Person {
+    name: String::from("Dennis"),
+    age: 16,
+    height: 180
+  };
+
+  print_my_info(&me);
+}
+
+fn print_my_info(info: &Person) {
+  println!("이름: {}, 나이: {}, 키: {}", info.name, info.age, info.height);
 }
