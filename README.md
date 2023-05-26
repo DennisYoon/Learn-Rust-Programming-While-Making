@@ -34,4 +34,4 @@
 |29|[슬라이스 타입](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/421ab5d4c78d6315694921b22f07336b821e9750)|
 |30|[구조체](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/aea193ed2850051d3cd6354f97f23d20289f8045)|
 |31|[문자열 빠세기!](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/12d116c53b7cd3ded5edeee1de40d6c5df9002b4)|
-|32|[readme 보충: 커밋 표]()|
+|32|[readme 보충: 커밋 표](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/3b8522e131e75e74aa6237082fc357e0000837c8)|
