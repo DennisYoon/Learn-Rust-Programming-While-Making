@@ -41,3 +41,4 @@
 |36|[제네릭 사용하기](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/68aeef9dea3f6ff6ff91edf41b0538287beb2e89)|
 |37|[반복자 알아보기](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/f75c73bb3dca05e573ddc08ef37f33285a16bd8a)|
 |38|[나만의 iterator 만들기](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/3e29595b5321d381e0b50c054e79692b667bf4cc)|
+|39|[enum으로 지갑 만들기](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/cbe977f56e6cea7c52652db1cddf747ee5759137)|
