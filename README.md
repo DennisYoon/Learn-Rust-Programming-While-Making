@@ -36,3 +36,4 @@
 |31|[문자열 빠세기!](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/12d116c53b7cd3ded5edeee1de40d6c5df9002b4)|
 |32|[readme 보충: 커밋 표](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/3b8522e131e75e74aa6237082fc357e0000837c8)|
 |33|[구조체와 메소드(impl)를 활용한 위치&운동 에너지와 무게](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/4742f0763aaf20b0b86d5ad8b81aaaf9288cc760)|
+|34|[constructor를 사용한 사칙 연산 class](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/d61a6a33c79f1c71394a32dbea9de00a5e76bb26)|
