@@ -1,60 +1,31 @@
-trait TreasureBox {
-  fn open(&self, key_no: i32) -> bool;
-  fn check(&self);
+fn add <T: std::ops::Add<Output = T> /* 덧셈 trait */> (a: T, b: T) -> T {
+  return a + b;
 }
 
-struct JewelryBox {
-  price: i32,
-  key_no: i32
+fn x2<T: std::ops::Add<Output = T> + Copy /* 같은 매개변수 2번 사용해야 하므로 Copy trait도 지정 */> (n: T) -> T {
+  return n + n;
 }
 
-impl TreasureBox for JewelryBox {
-  fn open(&self, key_no: i32) -> bool {
-    self.key_no == key_no
+fn x2verson2<T> (n:T) -> T
+  where T: std::ops::Add<Output = T> + Copy {
+    return n + n;
   }
-  fn check(&self) {
-    println!("보석 상자임. {} 골드 입수함.", self.price);
-  }
-}
 
-struct TrapBox {
-  damage: i32
-}
-
-impl TreasureBox for TrapBox {
-  fn open(&self, _key_no: i32) -> bool {
-    return true;
-  }
-  fn check(&self) {
-    println!("함정임. HP가 {}감소함.", self.damage);
-  }
-}
-
-fn open_box(tbox: &impl TreasureBox, key_no: i32) { // TreasureBox trait으로 구현된 모든 structure을 타입으로 사용
-  if !tbox.open(key_no) {
-    println!("열쇠 안 맞음");
-    return;
-  }
-  tbox.check();
+#[derive(Debug)] // 구조체의 필드값을 println 매크로로 출력 가능
+struct Point<T> {
+  x: T,
+  y: T
 }
 
 fn main() {
-  let box1 = JewelryBox {
-    price: 30,
-    key_no: 1,
-  };
+  println!("{}", add(1, 12)); // 13
+  println!("{}", add(1.2, 5.8)); // 7.0
+  println!("{}", add::<u8>(2, 0)); // 2 // 타입 명시
+  println!("{}", add('a', 'b')); // char 타입은 Add trait을 overload하지 않음 -> 불가
 
-  let box2 = TrapBox {
-    damage: 3
-  };
+  println!("{}", x2(2)); // 4
+  println!("{}", x2verson2(2)); // 4
 
-  let box3 = JewelryBox {
-    price: 20,
-    key_no: 2
-  };
-
-  let my_key = 2;
-  open_box(&box1, my_key);
-  open_box(&box2, my_key);
-  open_box(&box3, my_key);
+  let p: Point<f64> = Point {x: 2.0, y: 3.0};
+  println!("x: {}, y: {}", p.x, p.y);
 }
