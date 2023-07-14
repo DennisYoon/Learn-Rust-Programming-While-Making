@@ -45,3 +45,4 @@
 |40|[역 폴란드 표기법(reverse polish notation) 계산기](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/648ff51ee6a1e51f80318d5874015ee2589daf68)|
 |41|[image 크레이트로 chess board 이미지 만들기](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/e85ab3e710ff84a2b3705e686b843b22ee73a7ac)|
 |42|[image 크레이트로 이미지 자르고 리사이즈 하기](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/3f857cee0a71593c6ec90a314995ac325a5e242e)|
+|43|[thread test](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/3c9d18177135fc2aa73a938b58b2d3f715eb4cc0)|

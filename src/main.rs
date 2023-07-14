@@ -1,54 +1,49 @@
-use std::{thread, time};
+use std::sync::mpsc;
+use std::thread;
+use std::time::Duration;
 
-fn sleep_print(word: &str) {
-  for i in 1..=3 {
-    println!("{}: i={}", word, i);
-    thread::sleep(time::Duration::from_millis(1000));
-    // 1000ms 동안 프로그램 올 스톱
+fn sleep_sender(name: &str, sender: mpsc::Sender<String>) {
+  let companies = ["apple", "samsung", "google"];
+  for company in companies {
+    let message = format!("{}: {}", name, company);
+    sender.send(message).unwrap();
+    thread::sleep(Duration::from_millis(1000));
   }
+  sender.send(String::from("done")).unwrap();
 }
 
 fn main() {
-  println!("---스레드 없을 때---");
-  sleep_print("스레드 없음");
+  // 스레드간 통신 채널
+  let (sendr, receivr) = mpsc::channel::<String>();
 
-  println!("---스레드 이용---");
-
-  // thread1
+  // 스레드 1 생성
+  let sender = sendr.clone();
   thread::spawn(|| {
-    sleep_print("운동에너지");
-  });
-  
-  // thread2
-  thread::spawn(|| {
-    sleep_print("위치에너지");
+    sleep_sender("Team Cook", sender);
   });
 
-  // thread3
+  // 스레드 2 생성
+  let sender = sendr.clone();
   thread::spawn(|| {
-    sleep_print("역학적에너지");
+    sleep_sender("TM Roh", sender);
   });
 
-  // 메인 thread
-  sleep_print("물리 과학")
+  // 스레드로부터 지속적으로 메시지 받음
+  loop {
+    let buf = receivr.recv().unwrap(); // 메시지 받기
+    println!("[수신] {}", buf);
+    if buf == "done" {
+      break;
+    }
+  }
 }
 
 /*
----스레드 없을 때---
-스레드 없음: i=1
-스레드 없음: i=2
-스레드 없음: i=3
----스레드 이용---
-물리 과학: i=1
-운동에너지: i=1
-위치에너지: i=1
-역학적에너지: i=1
-운동에너지: i=2
-역학적에너지: i=2
-위치에너지: i=2
-물리 과학: i=2
-물리 과학: i=3
-역학적에너지: i=3
-운동에너지: i=3
-위치에너지: i=3
+[수신] Team Cook: apple
+[수신] TM Roh: apple
+[수신] Team Cook: samsung
+[수신] TM Roh: samsung
+[수신] Team Cook: google
+[수신] TM Roh: google
+[수신] done
 */
