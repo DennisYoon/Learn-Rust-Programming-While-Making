@@ -42,3 +42,4 @@
 |37|[반복자 알아보기](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/f75c73bb3dca05e573ddc08ef37f33285a16bd8a)|
 |38|[나만의 iterator 만들기](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/3e29595b5321d381e0b50c054e79692b667bf4cc)|
 |39|[enum으로 지갑 만들기](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/cbe977f56e6cea7c52652db1cddf747ee5759137)|
+|40|[역 폴란드 표기법(reverse polish notation) 계산기](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/648ff51ee6a1e51f80318d5874015ee2589daf68)|

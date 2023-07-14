@@ -1,39 +1,23 @@
+use image;
+
 fn main() {
-  let mut stack: Vec<f64> = vec![]; // 스택 선언
-
-  println!("RPN 입력 ㄱㄱ>>");
-
-  let mut s = String::new();
-  std::io::stdin().read_line(&mut s).unwrap(); // 식 입력 받기
-
-  let ns = s.clone();
-
-  let tokens = s.split_whitespace(); // 공백을 기준으로 split한 후 반복자 반환
-  for token in tokens {
-    let t = token.trim();
-
-    // 숫자면 stack에 push
-    match t.parse::<f64>() {
-      Ok(v) => {
-        stack.push(v);
-        continue;
-      }
-      Err(_) => (),
+  let white = image::Rgb::<u8>([255, 255, 255]); // 하얀색
+  let red = image::Rgb::<u8>([255, 0, 0]); // 빨간색
+  
+  let w = 64; // 한 칸의 크기 (단위: pixel)
+  
+  let draw = |x, y| {
+    let (xi, yi) = (x / w, y / w);
+    match (xi % 2, yi % 2) {
+      (0, 0) => white,
+      (1, 0) => red,
+      (0, 1) => red,
+      (1, 1) => white,
+      (_, _) => panic!("error")
     }
+  };
 
-    // 연산자면 2번 pop하고 계산한 결과를 push
-    let b = stack.pop().unwrap();
-    let a = stack.pop().unwrap();
+  let img = image::ImageBuffer::from_fn(512, 512, draw);
 
-    match t {
-      "+" => stack.push(a + b),
-      "-" => stack.push(a - b),
-      "*" => stack.push(a * b),
-      "/" => stack.push(a / b),
-      _ => panic!("계산 불가 연산자: {}", t)
-    }
-  }
-
-  // 결과표시
-  println!("{} -> {}", ns.trim(), stack.pop().unwrap());
+  img.save("checkerboard.png").unwrap(); // 이미지 저장
 }
