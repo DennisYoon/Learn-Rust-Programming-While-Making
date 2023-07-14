@@ -43,3 +43,4 @@
 |38|[나만의 iterator 만들기](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/3e29595b5321d381e0b50c054e79692b667bf4cc)|
 |39|[enum으로 지갑 만들기](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/cbe977f56e6cea7c52652db1cddf747ee5759137)|
 |40|[역 폴란드 표기법(reverse polish notation) 계산기](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/648ff51ee6a1e51f80318d5874015ee2589daf68)|
+|41|[image 크레이트로 chess board 이미지 만들기](https://github.com/DennisYun/Learn-Rust-Programming-While-Making/commit/e85ab3e710ff84a2b3705e686b843b22ee73a7ac)|
