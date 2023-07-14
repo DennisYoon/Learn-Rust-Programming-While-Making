@@ -1,19 +1,54 @@
-use image::{self, imageops, GenericImageView};
+use std::{thread, time};
+
+fn sleep_print(word: &str) {
+  for i in 1..=3 {
+    println!("{}: i={}", word, i);
+    thread::sleep(time::Duration::from_millis(1000));
+    // 1000ms 동안 프로그램 올 스톱
+  }
+}
 
 fn main() {
-  let size = 1280; // 리사이즈 후의 크기
+  println!("---스레드 없을 때---");
+  sleep_print("스레드 없음");
 
-  let mut img = image::open("windows.png").expect("파일 읽을 수 없음요"); // windows.png 파일 열기
-  let dim: (u32, u32) = img.dimensions(); // 이미지 크기 얻기 (가로, 세로)형 튜플 반환
+  println!("---스레드 이용---");
+
+  // thread1
+  thread::spawn(|| {
+    sleep_print("운동에너지");
+  });
   
-  // 정사각형으로 자르기
-  let w = if dim.0 > dim.1 {dim.1} else {dim.0}; // 짧은 쪽을 길이로
+  // thread2
+  thread::spawn(|| {
+    sleep_print("위치에너지");
+  });
 
-  let mut img2 = imageops::crop(&mut img, (dim.0 - w) / 2, (dim.1 - w) / 2, w, w).to_image();
-  // imageops::crop의 첫번째 매개변수: 자를 이미지, 두번째: 자르기 시작할 x 좌표, 세번째: y 좌표, 네번째: 가로 길이, 다섯번째: 세로 길이
+  // thread3
+  thread::spawn(|| {
+    sleep_print("역학적에너지");
+  });
 
-  let img3 = imageops::resize(&mut img2, size, size, imageops::Lanczos3);
-  // imageops::resize의 첫번째 매개변수: 자를 이미지, 두번째: 리사이즈 되었을 때의 가로 pixel 수, 세번째: 세로 pixel 수, 네번째: 필터
-
-  img3.save("windows2.png").unwrap();
+  // 메인 thread
+  sleep_print("물리 과학")
 }
+
+/*
+---스레드 없을 때---
+스레드 없음: i=1
+스레드 없음: i=2
+스레드 없음: i=3
+---스레드 이용---
+물리 과학: i=1
+운동에너지: i=1
+위치에너지: i=1
+역학적에너지: i=1
+운동에너지: i=2
+역학적에너지: i=2
+위치에너지: i=2
+물리 과학: i=2
+물리 과학: i=3
+역학적에너지: i=3
+운동에너지: i=3
+위치에너지: i=3
+*/
